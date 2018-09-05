@@ -18,28 +18,59 @@
     }
 
     // Regular
+    // console.log('ehtan')
 
     // Interpolated
+    // console.log(`hello ${12345}`)
 
     // Styled
+    // console.log('%c I am some great text',  'color: cyan; text-shadow: 10px 10px 0 red; background-color: purple; font-size: 50px')
 
     // warning!
+    console.warn('Oh NOOOOOO!!')
 
     // Error :|
+    console.error('on Hoooooo')
 
     // Info
+    console.info("info??????")
 
     // Testing
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('incorrectClass'), 'this is incorrect')
 
     // clearing
+    console.clear()
 
     // Viewing DOM Elements
+    console.log(p)
+    console.dir(p)
 
     // Grouping together
+    console.clear()
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+        console.log(`This is ${dog.name}`)
+        console.log(`age ${dog.age}`)
+        console.log(`dog years ${dog.age * 7}`)
+      console.groupEnd(`${dog.name}`)
+    })
 
     // counting
+    console.count('Ethan')
+    console.count('Ethan')
+    console.count('Ethan')
+    console.count('Ethan')
+    console.count('Ozelius')
 
     // timing
+    console.time("fetching data")
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+      })
 
   </script>
 </body>
