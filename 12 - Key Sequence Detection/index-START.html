@@ -7,6 +7,18 @@
 </head>
 <body>
 <script>
+  const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
+  const sequence = []
+
+  function handleKeyUp(e){
+    sequence.push(e.key)
+    const last10 = sequence.splice(-konami.length - 1, sequence.length - konami.length)
+    if(konami.every((element, index) => element === last10[index])){
+      alert('KONAMI!!!!')
+    }
+  }
+
+  window.addEventListener('keyup', handleKeyUp)
 </script>
 </body>
 </html>
