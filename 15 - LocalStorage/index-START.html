@@ -26,10 +26,56 @@
   </div>
 
 <script>
-  const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = fetchItems()
+  let id = items.length > 0 ? items.slice(-1)[0].id : 0
+  const addItems = document.querySelector('.add-items')
+  const itemsList = document.querySelector('.plates')
 
+  function populateList(plates = [], platesList){
+    platesList.innerHTML = plates.map((p, index) => {
+      return `
+        <li>
+          <input type="checkbox" ${p.done ? 'checked' : ''} onChange="toggleDone(${p.id})" />
+          <label for="${p.text}">${p.text}</label>
+        </li>
+      `
+    }).join('')
+  }
+
+  function toggleDone(id){
+    const items = fetchItems().slice(0)
+    const itemToUpate = items.find((item) => item.id === id)
+    const index = items.findIndex((item) => item.id === id)
+    itemToUpate.done = !itemToUpate.done
+
+    items.splice(index, 1, itemToUpate)
+    saveItems(items)
+  }
+
+  function saveItems(items){
+    localStorage.setItem('items', JSON.stringify(items))
+  }
+
+  function fetchItems(items){
+    return localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+  }
+
+  function addItem(e){
+    e.preventDefault()
+    const text = this.querySelector('[name=item]').value
+    const item = {
+      id: ++id,
+      text,
+      done: false
+    }
+    items.push(item)
+    populateList(items, itemsList)
+    saveItems(items)
+    this.reset()
+  }
+
+  addItems.addEventListener('submit', addItem)
+  populateList(items, itemsList)
 </script>
 
 

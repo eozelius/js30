@@ -54,18 +54,16 @@
 
     }
 
-    .plates input {
-      display: none;
-    }
+    /* .plates input {
+      // display: none;
+    } */
 
     .plates input + label:before {
-      content: '⬜️';
       margin-right: 10px;
     }
 
-    .plates input:checked + label:before {
-      content: '🌮';
-    }
+    /* .plates input:checked + label:before {
+    } */
 
     .add-items {
       margin-top: 20px;
