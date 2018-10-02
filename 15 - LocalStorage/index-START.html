@@ -43,12 +43,13 @@
   }
 
   function toggleDone(id){
-    const items = fetchItems().slice(0)
-    const itemToUpate = items.find((item) => item.id === id)
-    const index = items.findIndex((item) => item.id === id)
-    itemToUpate.done = !itemToUpate.done
-
-    items.splice(index, 1, itemToUpate)
+    const items = fetchItems().map((item, index) => {
+      if(item.id === id){
+        return Object.assign({}, item, { done: !item.done })
+      } else {
+        return item
+      }
+    })
     saveItems(items)
   }
 
