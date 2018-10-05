@@ -182,6 +182,23 @@
     </li>
   </ul>
 <script>
+  function minutify(seconds){
+    const minutes = parseInt(seconds / 60)
+    const s = seconds % 60
+    return `${minutes}:${s}`
+  }
+
+  const videos = Array.from(document.querySelectorAll('li'))
+  const totalSeconds = videos.reduce((accumulator, li) => { 
+    const time = li.dataset.time    
+    const [minutes, seconds] = time.split(':')
+    
+    // const minutes = parseInt(time.split(':')[0])
+    // const seconds = parseInt(time.split(':')[1])
+    return accumulator + parseInt(minutes) * 60 + parseInt(seconds)
+  }, 0)
+  console.log(minutify(totalSeconds))
+
 </script>
 </body>
 </html>
